@@ -1,0 +1,27 @@
+{
+	"ImportPath": "github.com/rrardian/cookpad-api",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v1.1.0-2-gc641b87",
+			"Rev": "c641b87978a16588afa9ab1a02e02c8b8e05b314"
+		},
+		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "349dd0209470eabd9514242c688c403c0926d266"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "906cda9512f77671ab44f8c8563b13a8e707b230"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "906cda9512f77671ab44f8c8563b13a8e707b230"
+		}
+	]
+}
