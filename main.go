@@ -58,11 +58,13 @@ func ResepHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 }
 
 type ResepDetail struct {
-	ID          int    `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Image       string `json:"image"`
-	Author      string `json:"author"`
+	ID          int      `json:"id"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Image       string   `json:"image"`
+	Author      string   `json:"author"`
+	Ingredients []string `json:"ingredients"`
+	Steps       []string `json:"steps"`
 }
 
 func ResepDetailHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -81,7 +83,17 @@ func ResepDetailHandler(w http.ResponseWriter, r *http.Request, p httprouter.Par
 		img := item.Find(".tofu_image img")
 		image, _ := img.Attr("src")
 		author := item.Find(".media__img span").Text()
-		resepDetail = ResepDetail{ID: rid, Title: title, Description: description, Image: image, Author: author}
+		var ingredients []string
+		item.Find(".ingredient").Each(func(index int, q *goquery.Selection) {
+			quantity := q.Find(".ingredient__details").Text()
+			ingredients = append(ingredients, quantity)
+		})
+		var step []string
+		item.Find(".step").Each(func(index int, q *goquery.Selection) {
+			st := q.Find(".step__text").Text()
+			step = append(step, st)
+		})
+		resepDetail = ResepDetail{ID: rid, Title: title, Description: description, Image: image, Author: author, Ingredients: ingredients, Steps: step}
 	})
 
 	js, err := json.Marshal(resepDetail)
